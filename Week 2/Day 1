@@ -65,37 +65,40 @@ private:
     }
 };
 
-Question 3 
+Ques 3 : Ransom Note 
 
 class Solution {
 public:
-    vector<int> findAnagrams(string s, string p) {
-        vector<int> result;
-
-        if (s.size() < p.size()) return result;
-
-        vector<int> pCount(26, 0);
-        vector<int> windowCount(26, 0);
-
-        for (char ch : p) {
-            pCount[ch - 'a']++;
+    bool canConstruct(string ransomNote, string magazine) {
+        int freq[26] = {0};
+        for(char ch : magazine){
+            freq[ch -'a']++;
+        } 
+        for(char ch : ransomNote){
+            freq[ch -'a']--;
+        
+        if(freq[ch - 'a'] < 0){
+            return false;
         }
-
-        int k = p.size();
-
-        for (int i = 0; i < s.size(); i++) {
-            windowCount[s[i] - 'a']++;
-
-            if (i >= k) {
-                windowCount[s[i - k] - 'a']--;
-            }
-
-           
-            if (windowCount == pCount) {
-                result.push_back(i - k + 1);
-            }
         }
-
-        return result;
+        return true;
     }
+
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
